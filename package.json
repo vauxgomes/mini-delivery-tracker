@@ -2,12 +2,30 @@
   "name": "mini-delivery-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:back": "npm run dev -w packages/backend",
+    "dev:front": "npm run dev -w packages/frontend",
+    "dev": "concurrently \"npm run dev:back\" \"npm run dev:front\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "nodejs",
+    "express",
+    "real-time",
+    "typescript",
+    "websocket",
+    "socket-io",
+    "leaflet",
+    "monorepo"
+  ],
+  "author": "Vaux Gomes",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
