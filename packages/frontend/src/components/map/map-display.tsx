@@ -1,12 +1,13 @@
 import type { ILocation } from '@shared/domain/ILocation'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
-import { MapEvents } from './MapEvents'
+import { MapEvents } from './map-events'
 
 import 'leaflet/dist/leaflet.css'
 
 interface MapDisplayProps {
   position: ILocation
   title: string
+  minHeight?: number
   onLocationSelect?: (location: ILocation) => void
 }
 
@@ -20,15 +21,17 @@ function ChangeView({ center }: { center: ILocation }) {
 export function MapDisplay({
   position,
   title,
+  minHeight = 100,
   onLocationSelect
 }: MapDisplayProps) {
+  // Extrating coodinates
   const coord: [number, number] = [position.latitude, position.longitude]
 
   return (
     <MapContainer
-      center={coord}
       zoom={13}
-      style={{ height: '400px', width: '100%' }}
+      center={coord}
+      className={`w-full h-full min-h-${minHeight} rounded-md overflow-hidden`}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
